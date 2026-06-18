@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIN A GAME</title>
+<style>
+body {
+    background: #1a1a2e;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    padding-top: 100px;
+   } 
+   button {
+    padding: 30px 60px;
+    background: #0f3460;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+   }
+</style>
+</head>
+<body>
+<h1>Click Game! </h1>
+<div id="timer">Time:10s</div>
+<div id="score">Score: 0</div>
+<button id="clickBtn" onclick="addScore()">CLICK ME!</button>
+<script>
+    let score = 0;
+    let timeLeft = 10;
+    let gameActive= true;
+    function addScore() {
+        if(gameActive) {
+            score++;
+            document.getElementById('score').innerText = 'Score:' + score;
+        }
+    }
+    let timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById('timer').innerText = 'Time:' + timeLeft + 's';
+        if(timeLeft <=0){
+            clearInterval(timer);
+            gameActive = false;
+            document.getElementById('clickBtn').disabled = true;
+            document.getElementById('timer').innerText ='Game Over! Final Score:' + score;
+        }
+    }, 1000);
+</script>
+</body>
+</html>
